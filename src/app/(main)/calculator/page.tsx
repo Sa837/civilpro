@@ -59,7 +59,7 @@ const CalculatorPage: React.FC<CalculatorPageProps> = () => {
             </div>
           </div>
 
-          {/* Cost Estimator Card */}
+          {/* Estimator Card */}
           <div className="group relative">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
             <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500">
@@ -80,11 +80,11 @@ const CalculatorPage: React.FC<CalculatorPageProps> = () => {
                   </svg>
                 </div>
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-green-600 transition-colors">
-                  Cost Estimator
+                  Estimator
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed">
-                  Professional cost estimation tool for construction projects.
-                  Get accurate quantity estimates instantly.
+                  Professional estimation tool for construction projects. Get
+                  accurate quantity estimates instantly.
                 </p>
                 <Link href="/calculator/estimator" className="block">
                   <button className="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl font-medium">
