@@ -89,7 +89,7 @@ export default function HomePage() {
                   "CivilPro has dramatically improved our calculation
                   efficiency. A must-have tool!"
                 </p>
-                <p className="font-semibold">- John Smith, Senior Engineer</p>
+                <p className="font-semibold text-black">- 123, Engineer</p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-lg">
                 <div className="text-yellow-400 mb-4">★★★★★</div>
@@ -97,8 +97,8 @@ export default function HomePage() {
                   "The most comprehensive engineering calculator suite I've ever
                   used."
                 </p>
-                <p className="font-semibold">
-                  - Sarah Johnson, Project Manager
+                <p className="font-semibold text-black">
+                  - ABC, Project Manager
                 </p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-lg">
@@ -107,8 +107,8 @@ export default function HomePage() {
                   "Accurate, fast, and reliable. CivilPro is now essential to
                   our workflow."
                 </p>
-                <p className="font-semibold">
-                  - Mike Chen, Structural Engineer
+                <p className="font-semibold text-black">
+                  - XYZ, Structural Engineer
                 </p>
               </div>
             </div>
