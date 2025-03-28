@@ -1,103 +1,136 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main>
+      <div className="bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto py-16 px-4">
+          <div className="text-center mb-16 animate-fadeIn">
+            <h1 className="text-5xl font-bold mb-6 text-gray-900 leading-tight">
+              Simplify Your Civil Engineering <br />
+              <span className="text-blue-600">Calculations & Designs</span>
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Your comprehensive platform for civil engineering calculations and
+              conversions. Built for professionals, by professionals.
+            </p>
+            <div className="mt-8">
+              <Link
+                href="/calculator"
+                className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors mr-4"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/about"
+                className="inline-block bg-gray-100 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Learn More
+              </Link>
+            </div>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Link
+              href="/calculator"
+              className="transform hover:scale-105 transition-transform"
+            >
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg hover:shadow-xl">
+                <div className="text-blue-600 text-2xl mb-4">🧮</div>
+                <h2 className="text-xl font-bold mb-3 text-gray-800">
+                  Calculators
+                </h2>
+                <p className="text-gray-600">
+                  Structural analysis, beam calculations, and more.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/converters"
+              className="transform hover:scale-105 transition-transform"
+            >
+              <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl">
+                <div className="text-green-600 text-2xl mb-4">⚖️</div>
+                <h2 className="text-xl font-bold mb-3 text-gray-800">
+                  Unit Converters
+                </h2>
+                <p className="text-gray-600">
+                  Quick and accurate unit conversions for all your needs.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/about"
+              className="transform hover:scale-105 transition-transform"
+            >
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg hover:shadow-xl">
+                <div className="text-purple-600 text-2xl mb-4">ℹ️</div>
+                <h2 className="text-xl font-bold mb-3 text-gray-800">
+                  Learn More
+                </h2>
+                <p className="text-gray-600">
+                  Discover how CivilPro can help your projects.
+                </p>
+              </div>
+            </Link>
+          </div>
+
+          <div className="mt-24">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+              What Our Users Say
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="text-yellow-400 mb-4">★★★★★</div>
+                <p className="text-gray-600 mb-4">
+                  "CivilPro has dramatically improved our calculation
+                  efficiency. A must-have tool!"
+                </p>
+                <p className="font-semibold">- John Smith, Senior Engineer</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="text-yellow-400 mb-4">★★★★★</div>
+                <p className="text-gray-600 mb-4">
+                  "The most comprehensive engineering calculator suite I've ever
+                  used."
+                </p>
+                <p className="font-semibold">
+                  - Sarah Johnson, Project Manager
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-lg">
+                <div className="text-yellow-400 mb-4">★★★★★</div>
+                <p className="text-gray-600 mb-4">
+                  "Accurate, fast, and reliable. CivilPro is now essential to
+                  our workflow."
+                </p>
+                <p className="font-semibold">
+                  - Mike Chen, Structural Engineer
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-24 text-center bg-gray-50 p-12 rounded-2xl">
+            <h3 className="text-3xl font-bold mb-6 text-gray-800">
+              Ready to Transform Your Engineering Workflow?
+            </h3>
+            <p className="text-gray-600 mb-8 text-lg">
+              Join thousands of engineers who trust CivilPro for their
+              calculations.
+            </p>
+            <Link
+              href="/signup"
+              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Start Free Trial
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </main>
   );
 }
