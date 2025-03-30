@@ -148,11 +148,29 @@ const conversions: Conversions = {
     },
   },
   discount: {
-    originalPrice: {
-      discountedPrice: (price: number, discount?: number): number =>
-        price * (1 - (discount || 0) / 100),
-      savingAmount: (price: number, discount?: number): number =>
-        price * ((discount || 0) / 100),
+    discountAmount: {
+      finalPrice: (price: number, discount?: number): number =>
+        price - (price * (discount || 0)) / 100,
+      savedAmount: (price: number, discount?: number): number =>
+        (price * (discount || 0)) / 100,
+      discountPercentage: (price: number, extra?: number): number =>
+        ((price - (extra || 0)) / price) * 100,
+    },
+    finalPrice: {
+      originalPrice: (discountedPrice: number, discount?: number): number =>
+        discountedPrice / (1 - (discount || 0) / 100),
+      savedAmount: (discountedPrice: number, discount?: number): number =>
+        (discountedPrice * (discount || 0)) / (100 - (discount || 0)),
+      discountPercentage: (finalPrice: number, extra?: number): number =>
+        ((extra || 0) / (finalPrice + (extra || 0))) * 100,
+    },
+    savedAmount: {
+      originalPrice: (savedAmount: number, discount?: number): number =>
+        (savedAmount * 100) / (discount || 0),
+      finalPrice: (savedAmount: number, discount?: number): number =>
+        (savedAmount * (100 - (discount || 0))) / (discount || 0),
+      discountPercentage: (savedAmount: number, extra?: number): number =>
+        (savedAmount / (savedAmount + (extra || 0))) * 100,
     },
   },
 };
@@ -201,6 +219,12 @@ const ConverterPage: React.FC<PageProps> = ({ params }) => {
 
     if (category === "discount") {
       const discountPercent = parseFloat(value2 || "0");
+      if (
+        isNaN(discountPercent) &&
+        (toUnit === "discountPercentage" || fromUnit === "discountPercentage")
+      ) {
+        return;
+      }
       setResult((converter as ConversionFunction)(num, discountPercent));
       return;
     }
@@ -245,7 +269,7 @@ const ConverterPage: React.FC<PageProps> = ({ params }) => {
             type="number"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="w-full p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all"
+            className="w-full p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all text-black"
             placeholder="Enter value"
           />
 
@@ -254,7 +278,7 @@ const ConverterPage: React.FC<PageProps> = ({ params }) => {
               type="number"
               value={value2}
               onChange={(e) => setValue2(e.target.value)}
-              className="w-full p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all"
+              className="w-full p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all text-black"
               placeholder="Enter discount percentage"
             />
           )}
@@ -263,7 +287,7 @@ const ConverterPage: React.FC<PageProps> = ({ params }) => {
             <select
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value)}
-              className="p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all"
+              className="p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all text-black"
             >
               {Object.keys(categoryUnits).map((unit) => (
                 <option key={unit} value={unit}>
@@ -275,7 +299,7 @@ const ConverterPage: React.FC<PageProps> = ({ params }) => {
             <select
               value={toUnit}
               onChange={(e) => setToUnit(e.target.value)}
-              className="p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all"
+              className="p-3 bg-gray-50/50 border border-gray-200/50 rounded-xl focus:outline-none focus:border-blue-400/50 focus:ring-4 focus:ring-blue-100/50 transition-all text-black"
             >
               {Object.keys(categoryUnits).map((unit) => (
                 <option key={unit} value={unit}>

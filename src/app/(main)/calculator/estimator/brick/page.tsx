@@ -4,17 +4,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 
-interface TileFormData {
+interface brickFormData {
   roomLength: number;
   roomWidth: number;
-  tileLength: number;
-  tileWidth: number;
+  brickLength: number;
+  brickWidth: number;
   unit: "meter" | "feet";
   waste: number;
 }
 
-const TileCalculator = () => {
-  const [result, setResult] = useState<{ tiles: number; area: number } | null>(
+const brickCalculator = () => {
+  const [result, setResult] = useState<{ bricks: number; area: number } | null>(
     null
   );
   const {
@@ -22,7 +22,7 @@ const TileCalculator = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TileFormData>({
+  } = useForm<brickFormData>({
     defaultValues: {
       waste: 10,
     },
@@ -30,22 +30,22 @@ const TileCalculator = () => {
 
   const wastePercentage = watch("waste");
 
-  const calculateTiles = (data: TileFormData) => {
+  const calculatebricks = (data: brickFormData) => {
     let roomArea = data.roomLength * data.roomWidth;
-    let tileArea = data.tileLength * data.tileWidth;
+    let brickArea = data.brickLength * data.brickWidth;
 
     // Convert to square meters if input is in feet
     if (data.unit === "feet") {
       roomArea = roomArea * 0.092903; // Convert square feet to square meters
-      tileArea = tileArea * 0.092903;
+      brickArea = brickArea * 0.092903;
     }
 
     // Add waste percentage
     const wasteMultiplier = 1 + data.waste / 100;
-    const tilesNeeded = Math.ceil((roomArea / tileArea) * wasteMultiplier);
+    const bricksNeeded = Math.ceil((roomArea / brickArea) * wasteMultiplier);
 
     setResult({
-      tiles: tilesNeeded,
+      bricks: bricksNeeded,
       area: Number(roomArea.toFixed(2)),
     });
   };
@@ -77,10 +77,10 @@ const TileCalculator = () => {
 
         <div className="bg-white shadow-xl rounded-2xl p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">
-            Tile Calculator
+            Brick Estimator
           </h1>
 
-          <form onSubmit={handleSubmit(calculateTiles)} className="space-y-6">
+          <form onSubmit={handleSubmit(calculatebricks)} className="space-y-6">
             <div className="bg-gray-50 p-4 rounded-lg">
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Unit of Measurement
@@ -140,40 +140,40 @@ const TileCalculator = () => {
               <div className="space-y-4">
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Tile Length
+                    Brick Length
                   </label>
                   <input
                     type="number"
                     step="0.01"
-                    {...register("tileLength", {
-                      required: "Tile length is required",
+                    {...register("brickLength", {
+                      required: "brick length is required",
                       min: 0,
                     })}
                     className="w-full p-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent text-black"
                   />
-                  {errors.tileLength && (
+                  {errors.brickLength && (
                     <p className="mt-2 text-sm text-red-600">
-                      {errors.tileLength.message}
+                      {errors.brickLength.message}
                     </p>
                   )}
                 </div>
 
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Tile Width
+                    Brick Width
                   </label>
                   <input
                     type="number"
                     step="0.01"
-                    {...register("tileWidth", {
-                      required: "Tile width is required",
+                    {...register("brickWidth", {
+                      required: "brick width is required",
                       min: 0,
                     })}
                     className="w-full p-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent text-black"
                   />
-                  {errors.tileWidth && (
+                  {errors.brickWidth && (
                     <p className="mt-2 text-sm text-red-600">
-                      {errors.tileWidth.message}
+                      {errors.brickWidth.message}
                     </p>
                   )}
                 </div>
@@ -181,7 +181,7 @@ const TileCalculator = () => {
             </div>
 
             <div className="bg-gray-50 p-4 rounded-lg">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm- font-semibold text-gray-700 mb-2">
                 Waste Percentage (%)
               </label>
               <input
@@ -211,10 +211,10 @@ const TileCalculator = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-700">
-                      Number of tiles needed:
+                      Number of bricks needed:
                     </span>
                     <span className="text-xl font-semibold text-green-800">
-                      {result.tiles}
+                      {result.bricks}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -238,4 +238,4 @@ const TileCalculator = () => {
   );
 };
 
-export default TileCalculator;
+export default brickCalculator;
